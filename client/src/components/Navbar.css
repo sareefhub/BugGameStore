@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    padding: 20px; 
+    height: 80px;
+    font-size: 20px; 
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-nav {
+      flex-direction: column;
+    }
+    .navbar-nav .nav-item {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+    .navbar-nav .nav-item:last-child {
+      margin-bottom: 0;
+    }
+
+    #navbarSupportedContent {
+        background-color: #ffffff; 
+        border-radius: 10px; 
+        padding: 10px; 
+        margin-top: 20px; 
+        border: 1px solid #ced4da; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1; /* กำหนดให้ชั้นนี้อยู่ในชั้นบนสุด */
+    }   
+}
+  
