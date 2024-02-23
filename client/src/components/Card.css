@@ -14,7 +14,9 @@
 
 .card:hover {
     cursor: pointer;
+    transform: scale(1.05);
 }
+
 
 .img {
     width: 100%;
@@ -43,7 +45,13 @@
     padding: 7px 20px;
     display: flex;
     flex-direction: column;
-    align-items: space-around;
+    align-items: center;
+    font-family: system-ui;
+    color: #999999;
+    font-size: 13px;
+    margin: 0px;
+    text-align: center;
+    padding: 25px;
 }
 
 .text .h3 {
@@ -55,21 +63,14 @@
     margin-top: 5px;
 }
 
-.text .p {
-    font-family: system-ui;
-    color: #999999;
-    font-size: 13px;
-    margin: 0px;
-    text-align: center;
-    padding: 25px;
-}
-
 .icon-box {
     margin: 10px;
     padding: 10px;
     background-color: #7980c5;
     border-radius: 10px;
+    width: 150px;
 }
+
 
 .icon-box .span {
     text-align: center;

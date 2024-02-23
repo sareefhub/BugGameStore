@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.history-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+.history-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.purchase-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.game-name {
+    font-weight: bold;
+}
+
+.timestamp {
+    color: #666;
+}
+
+.token {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.no-history {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+    .history-container {
+        padding: 10px;
+    }
+
+    .purchase-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .purchase-info .game-name,
+    .purchase-info .price,
+    .purchase-info .timestamp,
+    .purchase-info .token {
+        margin-bottom: 5px;
+    }
+
+    .no-history {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+}

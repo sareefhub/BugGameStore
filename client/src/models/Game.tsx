@@ -6,11 +6,12 @@ interface Game {
         cover_image: {
             data: {
                 attributes: {
-                    url: string; 
+                    url: string;
                 };
             };
         };
+        price: number;
     };
 }
 
-export default Game
+export default Game;

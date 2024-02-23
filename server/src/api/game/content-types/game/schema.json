@@ -28,6 +28,15 @@
         "videos",
         "audios"
       ]
+    },
+    "price": {
+      "type": "integer"
+    },
+    "histories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::history.history",
+      "mappedBy": "games"
     }
   }
 }

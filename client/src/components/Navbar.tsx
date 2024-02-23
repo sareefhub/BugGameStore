@@ -3,19 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../helper";
 import "./Navbar.css";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const user = getUserData();
   const [isOpen, setIsOpen] = useState(false);
+  const user = getUserData();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
-  };
-
-  const CheckUserToken = () => {
-    const checkuser = localStorage.getItem("user");
-    return !!checkuser; // คืนค่าเป็น true ถ้ามี user ใน localStorage
   };
 
   const handleLogout = () => {
@@ -33,31 +29,39 @@ const Navbar: React.FC = () => {
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              <a className="nav-link active" aria-current="page" href="/home">สินค้าทั้งหมด</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Menu1</a>
+              <a className="nav-link" href="/history">ประวัติการสั่งซื้อ</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Menu2</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Menu3</a>
+              <a className="nav-link" href="#">เติมพอยท์</a>
             </li>
           </ul>
-          <form className="d-flex">
-            {CheckUserToken() ? (
-              <div className="d-flex align-items-center">
-                <span className="navbar-text mx-2">{user.username}</span>
-                <button className="btn btn-outline-danger" type="button" onClick={handleLogout}>Logout</button>
-              </div>
+          <ul className="navbar-nav">
+            {user ? (
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {user.username}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/profile">โปรไฟล์</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={handleLogout}>ออกจากระบบ</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             ) : (
               <>
-                <button className="btn btn-outline-success" type="button" style={{ marginRight: '5px' }} onClick={() => navigate("/register")}>Sign up</button>
-                <button className="btn btn-outline-success" type="button" onClick={() => navigate("/login")}>Log in</button>
+                <li className="nav-item">
+                  <button className="btn btn-outline-success" type="button" style={{ marginRight: '5px' }} onClick={() => navigate("/register")}>Sign up</button>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-outline-success" type="button" onClick={() => navigate("/login")}>Log in</button>
+                </li>
               </>
             )}
-          </form>
+          </ul>
         </div>
       </div>
     </nav>
