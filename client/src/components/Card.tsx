@@ -19,6 +19,49 @@ const generateToken = () => {
   return token;
 };
 
+const deductPointsAndUpdateUser = (pointsToDeduct: number, username: string) => {
+  fetch('http://localhost:1337/api/users', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .then(users => {
+    const userToUpdate = users.find((user: { username: string; }) => user.username === username);
+    if (userToUpdate) {
+      const updatedPoints = userToUpdate.point - pointsToDeduct;
+      if (updatedPoints >= 0) {
+        userToUpdate.point = updatedPoints;
+        fetch(`http://localhost:1337/api/users/${userToUpdate.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userToUpdate),
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log(`Points deducted and user ${username} updated successfully`);
+          } else {
+            throw new Error('Failed to update user');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      } else {
+        console.error('Insufficient points');
+      }
+    } else {
+      console.error('User not found');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+};
+
 const Card: React.FC<CardProps> = ({ game }) => {
   const navigate = useNavigate();
 
@@ -54,6 +97,7 @@ const Card: React.FC<CardProps> = ({ game }) => {
             .then(response => {
               if (response.ok) {
                 Swal.fire('ซื้อสินค้าสำเร็จ!', '', 'success');
+                deductPointsAndUpdateUser(game.attributes.price, getUsername());
               } else {
                 throw new Error('Failed to store purchase history');
               }
