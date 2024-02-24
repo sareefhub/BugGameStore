@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.point-card {
+    width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.point-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.point-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    max-height: 200px; /* รูปภาพจะไม่เกินความสูง 100px */
+}
+
+.point-card label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.point-card input[type="text"],
+.point-card input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.point-card button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.point-card button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+input[type="datetime-local"],
+input[type="text"] {
+  width: calc(100% - 10px); 
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+    .point-card {
+        width: 90%;
+    }
+
+    .point-card img {
+        max-height: 150px;
+    }
+}

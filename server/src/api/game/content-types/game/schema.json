@@ -30,7 +30,7 @@
       ]
     },
     "price": {
-      "type": "integer"
+      "type": "biginteger"
     },
     "histories": {
       "type": "relation",

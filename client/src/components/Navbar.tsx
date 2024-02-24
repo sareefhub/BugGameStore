@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
               <a className="nav-link" href="/history">ประวัติการสั่งซื้อ</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">เติมพอยท์</a>
+              <a className="nav-link" href="/point">เติมพอยท์</a>
             </li>
           </ul>
           <ul className="navbar-nav">

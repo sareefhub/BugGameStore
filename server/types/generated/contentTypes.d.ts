@@ -377,7 +377,7 @@ export interface ApiGameGame extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.String;
     cover_image: Attribute.Media;
-    price: Attribute.Integer;
+    price: Attribute.BigInteger;
     histories: Attribute.Relation<
       'api::game.game',
       'manyToMany',
@@ -426,6 +426,40 @@ export interface ApiHistoryHistory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::history.history',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPointPoint extends Schema.CollectionType {
+  collectionName: 'points';
+  info: {
+    singularName: 'point';
+    pluralName: 'points';
+    displayName: 'Point';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    price: Attribute.Integer;
+    Date: Attribute.DateTime;
+    SlipImage: Attribute.Media;
+    QRImage: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::point.point',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::point.point',
       'oneToOne',
       'admin::user'
     > &
@@ -866,6 +900,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::game.game': ApiGameGame;
       'api::history.history': ApiHistoryHistory;
+      'api::point.point': ApiPointPoint;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
