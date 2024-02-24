@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUserData } from '../helper';
 import Navbar from '../components/Navbar';
 import './Profile.css';
+import { updateLocalUserPoint } from '../helper';
 
 const Profile: React.FC = () => {
     const [userData, setUserData] = useState<any>(null);
@@ -19,13 +20,19 @@ const Profile: React.FC = () => {
                 const storedUser = getUserData();
                 const foundUser = users.find((user: any) => user.username === storedUser.username);
                 setUserData(foundUser || null);
+                
+                // อัปเดตข้อมูลใน localStorage ให้สอดคล้องกับข้อมูลใน Strapi
+                if (foundUser && storedUser.point !== foundUser.point) {
+                    updateLocalUserPoint(foundUser.point);
+                }
             } catch (error) {
                 console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
             }
         };
-
+    
         fetchUserData();
     }, []);
+    
 
     return (
         <body>
