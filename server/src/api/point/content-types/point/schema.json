@@ -39,6 +39,9 @@
         "videos",
         "audios"
       ]
+    },
+    "username": {
+      "type": "string"
     }
   }
 }

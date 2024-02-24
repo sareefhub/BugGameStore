@@ -58,6 +58,7 @@ function Point() {
       formDataToSend.append('data', JSON.stringify({
         Date: formData.date,
         price: formData.price,
+        username: userData.username, // Add username field
       }));
       formDataToSend.append('files.SlipImage', formData.SlipImage);
 

@@ -449,6 +449,7 @@ export interface ApiPointPoint extends Schema.CollectionType {
     Date: Attribute.DateTime;
     SlipImage: Attribute.Media;
     QRImage: Attribute.Media;
+    username: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

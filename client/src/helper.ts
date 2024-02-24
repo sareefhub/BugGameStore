@@ -1,4 +1,3 @@
-// helper.ts
 export const storeUser = (data: any) => {
     localStorage.setItem(
         'user',
@@ -26,4 +25,15 @@ export const getUsername = () => {
       return user.username; 
     }
     return null;
+};
+
+export const updateLocalUserPoint = (newPoint: number) => {
+    const userData = getUserData();
+    if (userData) {
+        const updatedUserData = {
+            ...userData,
+            point: newPoint
+        };
+        localStorage.setItem('user', JSON.stringify(updatedUserData));
+    }
 };
