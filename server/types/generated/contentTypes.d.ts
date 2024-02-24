@@ -450,6 +450,8 @@ export interface ApiPointPoint extends Schema.CollectionType {
     SlipImage: Attribute.Media;
     QRImage: Attribute.Media;
     username: Attribute.String;
+    Status: Attribute.Enumeration<['Not filled yet', 'Replenished']> &
+      Attribute.DefaultTo<'Not filled yet'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

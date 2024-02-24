@@ -42,6 +42,14 @@
     },
     "username": {
       "type": "string"
+    },
+    "Status": {
+      "type": "enumeration",
+      "enum": [
+        "Not filled yet",
+        "Replenished"
+      ],
+      "default": "Not filled yet"
     }
   }
 }
