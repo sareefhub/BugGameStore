@@ -5,13 +5,14 @@ import { storeUser } from "../helper";
 import Swal from 'sweetalert2';
 import './Login.css';
 import Navbar from '../components/Navbar';
+import conf from '../conf';
 
 function Login() {
 const navigate = useNavigate();
 
 async function loginUser(credentials: { identifier: string, password: string }) {
 try {
-const response = await axios.post('http://localhost:1337/api/auth/local', credentials);
+const response = await axios.post(`${conf.apiPrefix}/api/auth/local`, credentials);
 return response.data;
 } catch (error) {
 console.error('Error logging in:', error);

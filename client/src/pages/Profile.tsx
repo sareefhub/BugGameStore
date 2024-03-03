@@ -3,6 +3,7 @@ import { getUserData } from '../helper';
 import Navbar from '../components/Navbar';
 import './Profile.css';
 import { updateLocalUserPoint } from '../helper';
+import conf from '../conf';
 
 const Profile: React.FC = () => {
     const [userData, setUserData] = useState<any>(null);
@@ -11,7 +12,7 @@ const Profile: React.FC = () => {
         const fetchUserData = async () => {
             try {
                 // ดึงข้อมูลผู้ใช้จาก Strapi
-                const response = await fetch('http://localhost:1337/api/users');
+                const response = await fetch(`${conf.apiPrefix}/api/users`);
                 if (!response.ok) {
                     throw new Error('ไม่สามารถดึงข้อมูลผู้ใช้ได้');
                 }

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getUserData } from '../helper';
 import './History.css';
+import conf from '../conf';
 
 const History: React.FC = () => {
   const [purchases, setPurchases] = useState<any[]>([]);
@@ -17,7 +18,7 @@ const History: React.FC = () => {
           return;
         }
 
-        const response = await fetch('http://localhost:1337/api/histories', {
+        const response = await fetch(`${conf.apiPrefix}/api/histories`, {
           headers: {
             Authorization: `Bearer ${userData.jwt}`,
           },

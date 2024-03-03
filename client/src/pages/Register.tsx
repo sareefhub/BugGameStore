@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import './Register.css';
 import Navbar from '../components/Navbar';
+import conf from '../conf';
 
 function Register() {
 const navigate = useNavigate();
@@ -21,7 +22,7 @@ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => { event.preventDefault();
 
     try {
-    const response = await axios.post('http://localhost:1337/api/auth/local/register', formData);
+    const response = await axios.post(`${conf.apiPrefix}/api/auth/local/register`, formData);
     Swal.fire({
     icon: 'success',
     title: 'ลงทะเบียนสำเร็จ',

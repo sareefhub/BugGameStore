@@ -5,6 +5,7 @@ import PointData from '../models/PointData';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { getUserData } from '../helper';
+import conf from '../conf';
 
 function Point() {
   const [pointData, setPointData] = useState<PointData[] | null>(null);
@@ -33,7 +34,7 @@ function Point() {
   }, []);
 
   const fetchData = () => {
-    fetch('http://localhost:1337/api/points?populate=QRImage')
+    fetch(`${conf.apiPrefix}/api/points?populate=QRImage`)
       .then(response => response.json())
       .then((data: { data: PointData[] }) => setPointData(data.data))
       .catch(error => console.error('Error fetching data:', error));
