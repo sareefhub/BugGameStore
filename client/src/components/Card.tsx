@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import Game from '../models/Game';
 import { getUsername, getUserData, updateLocalUserPoint } from '../helper';
+import conf from '../conf';
 import "./Card.css";
 
 interface CardProps {
@@ -21,7 +22,7 @@ const generateToken = () => {
 
 const deductPointsAndUpdateUser = async (pointsToDeduct: number, username: string, setUserData: React.Dispatch<React.SetStateAction<any>>) => {
     try {
-        const response = await fetch('http://localhost:1337/api/users', {
+        const response = await fetch(`${conf.apiPrefix}/api/users`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ const deductPointsAndUpdateUser = async (pointsToDeduct: number, username: strin
             throw new Error('Insufficient points');
         }
         userToUpdate.point = updatedPoints;
-        const updateUserResponse = await fetch(`http://localhost:1337/api/users/${userToUpdate.id}`, {
+        const updateUserResponse = await fetch(`${conf.apiPrefix}/api/users/${userToUpdate.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -85,7 +86,7 @@ const Card: React.FC<CardProps> = ({ game }) => {
                             timestamp: new Date().toISOString()
                         };
 
-                        fetch('http://localhost:1337/api/histories', {
+                        fetch(`${conf.apiPrefix}/api/histories`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -112,13 +113,14 @@ const Card: React.FC<CardProps> = ({ game }) => {
         } else {
             navigate("/login");
         }
+
+    
     };
 
     return (
         <div className="card">
             <div className="img">
-                <img className="img" src={"http://localhost:1337" + game.attributes.cover_image.data.attributes.url}
-                    alt={game.attributes.name} />
+                <img className="img" src={game.attributes.cover_image.data.attributes.url} alt={game.attributes.name} />
             </div>
             <div className="text">
                 <p className="h3">{game.attributes.name}</p>

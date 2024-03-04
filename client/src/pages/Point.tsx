@@ -63,7 +63,7 @@ function Point() {
       }));
       formDataToSend.append('files.SlipImage', formData.SlipImage);
 
-      const response = await fetch('http://localhost:1337/api/points', {
+      const response = await fetch(`${conf.apiPrefix}/api/points`, {
         method: 'POST',
         body: formDataToSend,
         headers: {
@@ -113,17 +113,9 @@ function Point() {
       <div className="point-card">
         <div>
           <h2>TermPoint</h2>
-          {pointData && pointData.map(point => (
-            <div key={point.id}>
-              {point.attributes.QRImage && point.attributes.QRImage.data && point.attributes.QRImage.data.map(qrImage => (
-                <img
-                  key={qrImage.id}
-                  src={`http://localhost:1337${qrImage.attributes.url}`}
-                  alt={qrImage.attributes.name}
-                />
-              ))}
+            <div>
+            <img src={require("../Images/QRCode.jpg")} alt="QRCode" />
             </div>
-          ))}
         </div>
         <h4>กรอกข้อมูลของท่าน</h4>
         <form onSubmit={handleFormSubmit}>

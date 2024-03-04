@@ -7,6 +7,7 @@ interface PointData {
         data: {
           id: number;
           attributes: {
+            qrImage: any;
             name: string;
             url: string;
           };
